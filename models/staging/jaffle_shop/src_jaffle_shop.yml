@@ -2,12 +2,15 @@ version: 2
 
 sources:
   - name: jaffle_shop
-    database: raw
-    schema: jaffle_shop
+    database: AMINE_HAMDI
+    schema: dbt_ahamdi
     tables:
-      - name: customers 
+      - name: customers
+        identifier: raw_customers  # Nom exact de la table dans Snowflake
+
       - name: orders
-        loaded_at_field: _etl_loaded_at
+        identifier: raw_orders     # Nom exact de la table dans Snowflake
+        loaded_at_field: _ETL_LOADED_AT # En majuscules si possible pour Snowflake
         freshness:
           warn_after: {count: 12, period: hour}
           error_after: {count: 24, period: hour}
